@@ -1,5 +1,11 @@
 <?php
+require_once('./database_connect.php');
 
+$request = $database->query('SELECT * FROM shows ORDER BY title');
+
+$shows = $request->fetchAll();
+
+// var_dump($shows);
 
 
 ?>
@@ -13,5 +19,13 @@
 </head>
 <body>
     
+    <ul>
+        <?php 
+            foreach($shows as $show){
+                echo '<li>' . $show["title"] . ' par ' . $show["performer"] . ' le ' . $show["date"] . ' à ' . $show["startTime"] . '</li>';
+            }
+        ?>
+    </ul>
+
 </body>
 </html>
